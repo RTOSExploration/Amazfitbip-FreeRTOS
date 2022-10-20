@@ -33,7 +33,7 @@ libopencm3/Makefile:
 	git submodule update --init
 
 libopencm3/lib/libopencm3_%.a: libopencm3/Makefile
-	$(MAKE) -C libopencm3
+	$(MAKE) -C libopencm3 TARGETS=stm32/l4
 
 %.bin: %.elf
 	@#printf "  OBJCOPY $(*).bin\n"
