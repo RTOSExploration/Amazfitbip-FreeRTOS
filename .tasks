@@ -1,20 +1,11 @@
 [+]
 LLVM_DIR=/usr/lib/llvm-14
-ARM_NONE_EABI_TOOLCHAIN_PATH=<root>/../gcc-arm-none-eabi-8-2018-q4-major
+ARM_NONE_EABI_TOOLCHAIN_PATH=$HOME/purs3/gcc-arm-none-eabi-8-2018-q4-major
 
 [project-build]
-command=export WLLVM_OUTPUT_LEVEL=DEBUG LLVM_COMPILER=clang LLVM_COMPILER_PATH=$(+LLVM_DIR)/bin BINUTILS_TARGET_PREFIX=$(+ARM_NONE_EABI_TOOLCHAIN_PATH)/bin/arm-none-eabi PATH="$PATH:$(+ARM_NONE_EABI_TOOLCHAIN_PATH)/bin/" && make -j CC=wllvm && extract-bc bin/main.elf && $(+LLVM_DIR)/bin/llvm-dis bin/main.elf.bc
+command=export WLLVM_OUTPUT_LEVEL=DEBUG LLVM_COMPILER=hybrid LLVM_COMPILER_PATH=$(+LLVM_DIR)/bin BINUTILS_TARGET_PREFIX=$(+ARM_NONE_EABI_TOOLCHAIN_PATH)/bin/arm-none-eabi PATH="$PATH:$(+ARM_NONE_EABI_TOOLCHAIN_PATH)/bin/" && make -j$(nproc) CC=wllvm && extract-bc bin/main.elf && $(+LLVM_DIR)/bin/llvm-dis bin/main.elf.bc
 cwd=<root>
 errorformat=%f:%l:%m
 #output=terminal
-#pos=TAB
+#pos=bottom
 save=2
-
-#[project-run]
-#commandg
-#cwd=<root>
-#output=terminal
-#pos=TAB
-#save=2
-## exec :checktime when task finishes
-#notify=:checktime
